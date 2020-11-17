@@ -1,0 +1,7 @@
+*.png
+*output*
+movie_making/*
+.vscode/*
+*__pycache__*
+desktop.ini
+.DS_Store
