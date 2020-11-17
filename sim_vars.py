@@ -42,7 +42,7 @@ MAIN_DIR_PATH = "/Users/axelpeytavin/Documents/Plastic-DA-data/"
 # ======================== CONSTANTS ========================
 # Be careful when modifying these
 
-simulator_version: float = 8
+simulator_version: float = 1
 
 MAX_LONGITUDE = 225
 MIN_LONGITUDE = 195
