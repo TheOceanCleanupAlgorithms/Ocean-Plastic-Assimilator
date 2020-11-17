@@ -60,7 +60,7 @@ You can see that the useful dataset has an altSeed variable. Datasets with diffe
 
 ### 3.a (RECOMMENDED) Using the data generated for the paper.
 
-All the required files are available at this address : [Zenodo archive : 10.5281/zenodo.4277841](https://zenodo.org/record/4277841#.X7Ql4NNKhhE)
+All the required files are available at this address : [Zenodo archive : 10.5281/zenodo.4278041](http://doi.org/10.5281/zenodo.4278041)
 
 Just download them and put them in the data folder `MAIN_DIR_PATH` you have defined in `sim_vars.py`.
 
