@@ -15,19 +15,7 @@ INIT_STD_DEV = 0.05  # In paper, sigma_e
 REINIT_STD_DEV = 0.000
 t_start_iter = 0
 t_end_iter = 1950
-N_o = 2
-observation_locations = [
-    (12, 4),
-    (55, 27),
-    (30, 20),
-    (30, 25),
-    (20, 20),
-    (30, 15),
-    (20, 10),
-    (10, 20),
-    (30, 19),
-    (30, 21),
-][:N_o]
+observation_locations = [(12, 4), (55, 27)]
 altSeed = 3
 radius_obs = np.inf  # Used for localization. Set to inf to deactivate it.
 
