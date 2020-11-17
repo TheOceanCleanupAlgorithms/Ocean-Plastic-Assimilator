@@ -1,5 +1,7 @@
 # Data Assimilation of Plastics Concentration in a Lagrangian Model - Algorithms
 
+[![DOI](https://zenodo.org/badge/313681430.svg)](https://zenodo.org/badge/latestdoi/313681430)
+
 ## Version 1
 
 This repository contains code to perform data assimilation on a dispersion of particles in a controlled environment.
