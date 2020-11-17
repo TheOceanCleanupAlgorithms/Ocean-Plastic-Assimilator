@@ -28,7 +28,7 @@ observation_locations = [
     (30, 19),
     (30, 21),
 ][:N_o]
-altSeed = 2
+altSeed = 3
 radius_obs = np.inf  # Used for localization. Set to inf to deactivate it.
 
 # ======================== OTHER PARAMS =====================
