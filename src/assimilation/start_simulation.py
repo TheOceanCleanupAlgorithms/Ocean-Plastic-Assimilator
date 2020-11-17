@@ -3,7 +3,6 @@ import matplotlib
 import numpy as np
 import netCDF4 as nc
 import os
-from celluloid import Camera
 import seaborn as sns
 import pandas as pd
 from src.assimilation.assimilate import assimilate
@@ -107,7 +106,6 @@ def start_simulation():
     # Initialize subplots
     fig, axs = plt.subplots(nrows=2, ncols=3, sharex=True, figsize=(20, 10))
 
-    camera = Camera(fig)
     weights_means = []
     densities_err_means = []
     densities_err_stddev = []
@@ -221,7 +219,6 @@ def start_simulation():
                 sns.lineplot(data=cfrms_df, ax=axs[1, 2])
 
                 logger.export_csv()
-                camera.snap()
                 fig.savefig(f"{output_dir_path}metrics_{t}.png")
                 plt.close("all")
 

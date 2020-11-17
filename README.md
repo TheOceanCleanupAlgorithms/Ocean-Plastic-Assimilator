@@ -12,13 +12,23 @@ Please be careful after changing constants. Parameters changes are planned and s
 
 ## 2. Runtime requirements
 
-The required packages to perform a simulations are available in the `environment.yml` file.
-You can install them easily with `conda`. Please not you will need to add the conda-forge channels to your config:
+The required packages to perform a simulations are available in the `env.txt` file.
+You can install them easily with `conda` (install conda first with anaconda or miniconda). Please not you may need to add the conda-forge channels to your config:
 
 ```
 conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
+
+Then, create the environment with one simple command:
+
+`conda create --name <YOUR_ENV_NAME> --file env.txt`
+
+And then, activate it:
+
+`conda activate <YOUR_ENV_NAME`
+
+That's it, your good to go!
 
 ## 3. Data requirements
 
