@@ -1,7 +1,9 @@
 # Data Assimilation of Plastics Concentration in a Lagrangian Model - Algorithms
 
-This repository contains code to perform data assimilation on a dispersion of particles.
-It is to be used on plastics particles in oceanic dispersion data, but for now the goal is to prove such a method allows to correct a forecast accurately in a controlled environment.
+## Version 1
+
+This repository contains code to perform data assimilation on a dispersion of particles in a controlled environment.
+For now the goal is to prove such a method allows to correct a forecast accurately. In time, it will be used on dispersion data in real-world flow fields.
 
 The following steps describe how to use the code to apply the assimilation method on a double gyre.
 
@@ -58,7 +60,8 @@ You can see that the useful dataset has an altSeed variable. Datasets with diffe
 
 ### 3.a (RECOMMENDED) Using the data generated for the paper.
 
-All the required files are available at this address : TODO
+All the required files are available at this address : [Zenodo archive : 10.5281/zenodo.4277841](https://zenodo.org/record/4277841#.X7Ql4NNKhhE)
+
 Just download them and put them in the data folder `MAIN_DIR_PATH` you have defined in `sim_vars.py`.
 
 Set `altSeed = 3` after.
