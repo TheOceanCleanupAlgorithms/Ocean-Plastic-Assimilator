@@ -154,7 +154,7 @@ def start_simulation():
             min_densities_error = min(
                 min_densities_error, densities_difference_to_ref.min()
             )
-            current_cfrms = np.math.sqrt(np.sum(densities_difference_to_ref ** 2))
+            current_cfrms = np.math.sqrt(np.average(densities_difference_to_ref ** 2))
 
             logger.log("t", t + 1)
             logger.log("weights_mins", np.min(avg_weights))
