@@ -1,7 +1,6 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4278048.svg)](https://doi.org/10.5281/zenodo.4278048)
 
-
-# Data Assimilation of Plastics Concentration in a Lagrangian Model - Algorithms
+# Ocean Plastic Assimilator - v0.1
 
 This repository contains the code of the Ocean Plastic Assimilator, a program to perform data assimilation on a dispersion of particles.
 
