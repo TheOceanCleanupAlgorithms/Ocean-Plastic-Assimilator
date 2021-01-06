@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-class Logger:
+class CSV_Logger:
     def __init__(self, path: str):
         self.df = pd.DataFrame()
         self.currentLog = dict()
