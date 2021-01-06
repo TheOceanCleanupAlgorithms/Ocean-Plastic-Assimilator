@@ -1,15 +1,16 @@
 import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
-from sim_vars import output_dir_path, LONGITUDES, LATITUDES
 
 
-def gen_cov_map(dataset, name, x, y, axes=None):
+def gen_cov_map(
+    dataset, name, x, y, max_lon_id, max_lat_id, metrics_dir_path, axes=None
+):
     if axes is None:
         plt.figure(figsize=(12, 8))
-    xlabels = np.full(LONGITUDES, "")
+    xlabels = np.full(max_lon_id, "")
     xlabels[x] = x
-    ylabels = np.full(LATITUDES, "")
+    ylabels = np.full(max_lat_id, "")
     ylabels[y] = y
     sns.set_context("paper")
     ax = sns.heatmap(
@@ -23,4 +24,4 @@ def gen_cov_map(dataset, name, x, y, axes=None):
     )
     plt.xticks([x + 0.5], [str(x)], rotation=90)
     plt.yticks([y + 0.5], [str(y)])
-    ax.get_figure().savefig(output_dir_path + name)
+    ax.get_figure().savefig(metrics_dir_path + name)

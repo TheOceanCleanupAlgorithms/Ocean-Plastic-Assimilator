@@ -2,7 +2,12 @@ from datetime import timedelta
 from opendrift.readers import reader_double_gyre
 from opendrift.models.oceandrift import OceanDrift
 from src.double_gyre.dispersion_utils import exportParticlesToDataset
-from sim_vars import NB_PARTS, epsilon, A, altSeed
+
+# PARAMETERS
+A = 0.1
+epsilon = 0.25
+NB_PARTS = 25000
+altSeed = 3
 
 o = OceanDrift(loglevel=20)  # Set loglevel to 0 for debug information
 o.fallback_values["land_binary_mask"] = 0
