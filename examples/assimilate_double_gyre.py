@@ -19,5 +19,5 @@ if __name__ == "__main__":
         t_end=2000,
         observations_error_percent=sigma_rel,
         observation_locations=[(12, 4), (55, 27)],
-        initial_mass_multiplicator=mu,mass_multiplicator=2,
+        initial_mass_multiplicator=mu,
     )
