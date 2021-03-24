@@ -1,4 +1,5 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4278048.svg)](https://doi.org/10.5281/zenodo.4278048)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/gaelforget/Ocean-Plastic-Assimilator/gfdev01?urlpath=lab)
 
 # Ocean Plastic Assimilator - v0.1
 
