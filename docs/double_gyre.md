@@ -10,7 +10,7 @@ Use the following to generate two dispersion simulations with the flow field def
 
 All the required files are available using the following DOI: 
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4421869.svg)](https://doi.org/10.5281/zenodo.4421869)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4277840.svg)](https://doi.org/10.5281/zenodo.4277840)
 
 You can simply download the files and use them as input of the assimilator using the example available in the `examples/` folder.
 
