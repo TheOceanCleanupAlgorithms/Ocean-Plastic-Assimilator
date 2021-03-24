@@ -1,4 +1,5 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4278048.svg)](https://doi.org/10.5281/zenodo.4278048)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/gaelforget/Ocean-Plastic-Assimilator/gfdev01?urlpath=lab)
 
 # Ocean Plastic Assimilator - v0.1
 
@@ -7,11 +8,19 @@ This repository contains the code of the Ocean Plastic Assimilator, a program to
 ## 1. Runtime requirements
 
 The required packages to perform a simulations are available in the `environment.yml` file.
-You can install them easily with `conda`. Please not you will need to add the conda-forge channels to your config:
+You can install them easily with `conda`. Please note that you will need to add the conda-forge channels to your config:
 
 ```
 conda config --add channels conda-forge
 conda config --set channel_priority strict
+```
+
+## 1.1 Get Started
+
+```
+conda env create -f environment.yml
+conda activate ocean-plastic-assimilator
+python examples/assimilate_double_gyre.py
 ```
 
 ## 2. Data requirements

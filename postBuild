@@ -1,0 +1,5 @@
+mkdir data
+wget https://zenodo.org/record/4426130/files/parts_double_gyre_ref_eps_0.25_A_0.1175_as_2.nc data/.
+wget https://zenodo.org/record/4426130/files/Ocean_Plastic_Assimilator_v0.1_outputs.zip
+unzip Ocean_Plastic_Assimilator_v0.1_outputs.zip
+
