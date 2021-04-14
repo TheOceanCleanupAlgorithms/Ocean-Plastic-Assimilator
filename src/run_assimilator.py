@@ -39,7 +39,8 @@ def run_assimilator(
     measure_resolution: Optional[float] = None,
     simulation_name: Optional[str] = None,
     csv_reader_options: Dict = {},
-    verbose: bool = True,
+    verbose: bool = False,
+    computations_data_dir: Optional[str] = None
 ):
     """
     Start the ocean plastic assimilator
@@ -91,13 +92,11 @@ def run_assimilator(
 
     # If paths are not defined, create directories here
     all_outputs_dir = "outputs/"
-    all_data_dir = "D:/assimilator_data/"
-    if not Path(all_outputs_dir).is_dir():
-        Path(all_outputs_dir).mkdir()
-    if not Path(all_data_dir).is_dir():
-        Path(all_data_dir).mkdir()
+    computations_data_dir = "data/" if computations_data_dir is None else computations_data_dir
+    Path(all_outputs_dir).mkdir(exist_ok=True)
+    Path(computations_data_dir).mkdir(exist_ok=True)
 
-    data_dir = f"{all_data_dir}data_{simulation_name}/"
+    data_dir = f"{computations_data_dir}data_{simulation_name}/"
     metrics_dir = f"{all_outputs_dir}output_{simulation_name}/"
 
     ds_particles = nc.Dataset(particles_dataset_path)
