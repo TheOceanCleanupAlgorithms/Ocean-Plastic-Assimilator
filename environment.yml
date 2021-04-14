@@ -11,4 +11,12 @@ dependencies:
   - numba
   - black
   - flake8
+  - jupyter
+  - xlrd
+  - openpyxl
+  - xarray
+  - dask
+  - matplotlib
+  - pip:
+    - wget
 prefix: C:\ProgramData\Miniconda3\envs\ocean-plastic-assimilator
