@@ -5,3 +5,4 @@ movie_making/*
 *__pycache__*
 desktop.ini
 .DS_Store
+data/
