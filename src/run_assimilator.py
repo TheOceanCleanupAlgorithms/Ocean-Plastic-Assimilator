@@ -32,6 +32,7 @@ def run_assimilator(
     t_end: int,
     initial_mass_multiplicator: float = 1,
     radius_observation: int = np.infty,
+    reinit_spreading: float = 0,
     metrics_plot_period: int = 10,
     observations_error_percent: Optional[float] = None,
     observation_locations: Optional[List[Tuple[int, int]]] = None,
@@ -90,7 +91,7 @@ def run_assimilator(
 
     # If paths are not defined, create directories here
     all_outputs_dir = "outputs/"
-    all_data_dir = "data/"
+    all_data_dir = "D:/assimilator_data/"
     if not Path(all_outputs_dir).is_dir():
         Path(all_outputs_dir).mkdir()
     if not Path(all_data_dir).is_dir():
@@ -173,7 +174,7 @@ def run_assimilator(
         max_time=t_end + 1,
         t_start=t_start,
         t_end=t_end,
-        reinit_spreading=0,
+        reinit_spreading=reinit_spreading,
         observations=observation_config,
         verbose=verbose,
     )

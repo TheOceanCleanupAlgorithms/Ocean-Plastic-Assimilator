@@ -121,7 +121,8 @@ def compute_corrections(
     observations: pd.DataFrame,
     Binv: np.ndarray,
     modifiedIndices: list,
-):
+    verbose: bool,
+) -> np.ndarray:
     # Per ensemble correction
     corrections = np.zeros(
         (
@@ -143,6 +144,15 @@ def compute_corrections(
                 for i in range(len(obs_values))
             ]
         )
+        if verbose:
+            print(
+                *[
+                    (
+                        f"Observation {obs_values[i]} and prediction {densities_ensemble[e, obs_lon_ids[i], obs_lat_ids[i], t_observation]} gives value to correct {to_correct[i]}"
+                    )
+                    for i in range(len(obs_values))
+                ]
+            )
         A = np.dot(Binv, to_correct)
 
         for (x, y) in modifiedIndices:
@@ -205,7 +215,7 @@ def assimilate(
         parts_lon, parts_lat, t_observation, config.grid_coords
     )
 
-    if t_observation != 0:
+    if t_observation != 0 and len(observations) != 0:
         if config.verbose:
             print("Introducing model density errors")
         reintroduce_error(densities_ensemble, config.reinit_spreading, t_observation)
@@ -228,14 +238,20 @@ def assimilate(
 
     if config.verbose:
         print("Computing corrections")
-    densities_ensemble[:, :, :, t_observation] += compute_corrections(
+    corrections = compute_corrections(
         t_observation,
         densities_ensemble,
         cov,
         observations,
         Binv,
         modifiedIndices,
+        config.verbose,
     )
+    if config.verbose:
+        print("Maximum of corrections is ", corrections.max())
+    if np.isnan(corrections.max()):
+        return False
+    densities_ensemble[:, :, :, t_observation] += corrections
 
     if config.verbose:
         print("Updating weights")
@@ -260,3 +276,5 @@ def assimilate(
         config.grid_coords,
         t_observation + 1,
     )
+
+    return True
