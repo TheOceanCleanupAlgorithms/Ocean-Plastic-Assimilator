@@ -19,6 +19,7 @@ def compute_particle_ids_for_areas(
         for j in range(grid_coords.max_lat_id):
             l2 = List()
             l2.append(0)
+            l2.remove(0)
             l1.append(l2)
         particle_ids_for_areas.append(l1)
 
