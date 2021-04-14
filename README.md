@@ -33,14 +33,7 @@ See the [dedicated documentation file](docs/double_gyre.md)
 
 ## 4. Start the simulation
 
-Copy one of the examples scripts in the root folder and set the parameters to what suits your situation.
-The parameters to the `run_assimilator` function are listed in the `src/run_assimilator.py`
-
-The program will create a `data_.../` folder in the main data folder, and an `output_.../` folder in the outputs folder. If these folders already exist, the simulation will not start in order to not erase existing data.
-
-Graphs and metrics csv logs are periodically output of the simulation and written in the output folder.
-
-The netCDF data in the `data_.../` folder is only written at the end of the model, or if you interrupt it with Ctrl+C.
+Follow the instructions in the notebook `examples.ipynb` to run the experiments described in the paper, or copy one of the example start scripts in `examples/` in the root directory and start it.
 
 # Appendices
 
