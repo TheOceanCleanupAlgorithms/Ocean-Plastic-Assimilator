@@ -1,5 +1,6 @@
 import netCDF4 as nc
 import numpy as np
+from shutil import copyfile
 
 from src.io.file_utils import create_folder
 from src.assimilation.density_computations import compute_densities
@@ -141,3 +142,5 @@ def init_data(datapaths: AssimilatorDataPaths, config: AssimilatorConfig):
     recompute_ensemble_densities(
         config, datapaths.ds_parts_ensemble, datapaths.ds_densities_ensemble
     )
+
+    copyfile(datapaths.ds_densities_ensemble, datapaths.ds_densities_ensemble.strip(".nc") + "_init.nc")
