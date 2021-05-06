@@ -33,8 +33,24 @@ def start_simulation(datapaths: AssimilatorDataPaths, config: AssimilatorConfig)
     if config.verbose:
         print("Generating initial metrics")
 
-    metrics = Metrics(datapaths.metrics_dir, densities_ensemble, config.max_time)
-    metrics.log_metrics(densities_ensemble, densities_ref, weights, config.t_start)
+    metrics = Metrics(
+        datapaths.metrics_dir,
+        densities_ensemble,
+        config.max_time,
+        config.observations.type,
+        config.grid_coords,
+    )
+    metrics.log_metrics(
+        densities_ensemble,
+        densities_ref,
+        weights,
+        parts_lon,
+        parts_lat,
+        config.t_start,
+        parts_original_path=config.observations.ds_reference_path
+        if config.observations.type == ObservationsType.from_simulation
+        else None,
+    )
 
     # =================================================== ITERATIONS ========================================================
 
@@ -64,7 +80,7 @@ def start_simulation(datapaths: AssimilatorDataPaths, config: AssimilatorConfig)
                     df_observations["time"] == t
                 ]
 
-            assimilate(
+            assimilate_res = assimilate(
                 t,
                 densities_ensemble,
                 observations,
@@ -75,7 +91,20 @@ def start_simulation(datapaths: AssimilatorDataPaths, config: AssimilatorConfig)
                 datapaths,
             )
 
-            metrics.log_metrics(densities_ensemble, densities_ref, weights, t + 1)
+            if not assimilate_res:
+                break
+
+            metrics.log_metrics(
+                densities_ensemble,
+                densities_ref,
+                weights,
+                parts_lon,
+                parts_lat,
+                t + 1,
+                parts_original_path=config.observations.ds_reference_path
+                if config.observations.type == ObservationsType.from_simulation
+                else None,
+            )
             if (t - config.t_start) % config.graph_plot_period == 0:
                 if config.verbose:
                     print("Generating heatmaps and distributions")

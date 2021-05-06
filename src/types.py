@@ -3,6 +3,7 @@ from typing import Tuple, Union, List
 from enum import Enum
 
 import pandas as pd
+import numpy as np
 
 
 @dataclass
@@ -58,7 +59,7 @@ class AssimilatorConfig:
     """Dataclass to store Assimilator configuration variables"""
 
     size_ensemble: int
-    ensemble_spread_percent: float
+    ensemble_spread: float
     initial_mass_multiplicator: float
     num_particles_total: int
     grid_coords: RectGridCoords
@@ -70,3 +71,4 @@ class AssimilatorConfig:
     reinit_spreading: float
     verbose: bool
     observations: Union[ObservationsFromCSVConfig, ObservationsFromSimulationConfig]
+    cells_area: np.ndarray

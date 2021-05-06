@@ -1,5 +1,6 @@
 import netCDF4 as nc
 import numpy as np
+from shutil import copyfile
 
 from src.io.file_utils import create_folder
 from src.assimilation.density_computations import compute_densities
@@ -18,7 +19,7 @@ def recompute_ref_densities(
 
     T = list(range(ds_out["density"].shape[2]))
 
-    compute_densities(ds_in_path, ds_out_path, T, config.grid_coords)
+    compute_densities(ds_in_path, ds_out_path, T, config.grid_coords, config.cells_area)
 
 
 def recompute_ensemble_densities(config: AssimilatorConfig, ds_in_path, ds_out_path):
@@ -42,6 +43,7 @@ def recompute_ensemble_densities(config: AssimilatorConfig, ds_in_path, ds_out_p
         parts_lat,
         densities,
         weights,
+        config.cells_area,
         list(range(config.max_time)),
         config.grid_coords,
     )
@@ -102,7 +104,7 @@ def compute_parts_ensemble(datapaths: AssimilatorDataPaths, config: AssimilatorC
         np.array(
             [
                 config.initial_mass_multiplicator
-                + np.random.randn(config.size_ensemble) * config.ensemble_spread_percent
+                + np.random.randn(config.size_ensemble) * config.ensemble_spread
             ]
         ).transpose()
         * repeated_weights
@@ -141,3 +143,5 @@ def init_data(datapaths: AssimilatorDataPaths, config: AssimilatorConfig):
     recompute_ensemble_densities(
         config, datapaths.ds_parts_ensemble, datapaths.ds_densities_ensemble
     )
+
+    copyfile(datapaths.ds_densities_ensemble, datapaths.ds_densities_ensemble.strip(".nc") + "_init.nc")

@@ -19,6 +19,7 @@ def compute_particle_ids_for_areas(
         for j in range(grid_coords.max_lat_id):
             l2 = List()
             l2.append(0)
+            l2.remove(0)
             l1.append(l2)
         particle_ids_for_areas.append(l1)
 
@@ -68,6 +69,7 @@ def compute_densities(
     ds_out_path,
     T,
     grid_coords: RectGridCoords,
+    cells_area,
 ):
     ds_in = nc.Dataset(ds_in_path, "r")
     nbPart = ds_in["p_id"].shape[0]
@@ -92,6 +94,7 @@ def compute_densities(
         lon_ids_for_all_parts,
         lat_ids_for_all_parts,
         weights,
+        cells_area,
         grid_coords.max_lon_id,
         grid_coords.max_lat_id,
         len(T),
@@ -102,7 +105,7 @@ def compute_densities(
 
 @njit
 def llvm_compute_densities(
-    nbPart, lon_ids_for_all_parts, lat_ids_for_all_parts, weights, n, p, T
+    nbPart, lon_ids_for_all_parts, lat_ids_for_all_parts, weights, cells_area, n, p, T
 ):
     densities = np.zeros((n, p, T))
 
@@ -116,6 +119,6 @@ def llvm_compute_densities(
                     lonId,
                     latId,
                     t,
-                ] += weights[i]
+                ] += weights[i] / cells_area[lonId, latId]
 
     return densities

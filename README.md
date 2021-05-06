@@ -7,35 +7,36 @@ This repository contains the code of the Ocean Plastic Assimilator, a program to
 ## 1. Runtime requirements
 
 The required packages to perform a simulations are available in the `environment.yml` file.
-You can install them easily with `conda`. Please not you will need to add the conda-forge channels to your config:
+You can install them easily with `conda`. Please note that you will need to add the conda-forge channels to your config:
 
 ```
 conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
+## 1.1 Get Started
+
+```
+conda env create -f environment.yml
+conda activate ocean-plastic-assimilator
+```
+
+then use one of the example scripts in `examples/` as a template for your use case.
+
+## 1.2 Run the GMD paper experiments
+
+If you are looking at running the experiments and examples presented in the paper submitted to Geoscientific Model Development, use the examples_index.ipynb notebook to automatically download the required data and start the experiments.
+
 ## 2. Data requirements
 
 See the [dedicated documentation file](docs/data_requirements.md).
 
-## 3. Specific requirements to test the program on a double gyre simulation
+## 3. Start the simulation
 
-These are the steps to follow to reproduce the results in the initial paper for the GMD journal.
-See the [dedicated documentation file](docs/double_gyre.md)
-
-## 4. Start the simulation
-
-Copy one of the examples scripts in the root folder and set the parameters to what suits your situation.
-The parameters to the `run_assimilator` function are listed in the `src/run_assimilator.py`
-
-The program will create a `data_.../` folder in the main data folder, and an `output_.../` folder in the outputs folder. If these folders already exist, the simulation will not start in order to not erase existing data.
-
-Graphs and metrics csv logs are periodically output of the simulation and written in the output folder.
-
-The netCDF data in the `data_.../` folder is only written at the end of the model, or if you interrupt it with Ctrl+C.
+Follow the instructions in the notebook `examples.ipynb` to run the experiments described in the paper, or copy one of the example start scripts in `examples/` in the root directory and start it.
 
 # Appendices
 
-## A. Notebooks used to generate figures for the initial paper
+## A. Notebooks used to generate figures for the GMD paper
 
 These notebooks are in the `analysis/` folder.

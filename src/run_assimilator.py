@@ -27,18 +27,21 @@ def run_assimilator(
     assimilation_domain_coords: Tuple[float, float, float, float],
     assimilation_grid_size: Tuple[int, int],
     size_ensemble: int,
-    initial_ensemble_spread_percent: float,
+    initial_ensemble_spread: float,
     t_start: int,
     t_end: int,
     initial_mass_multiplicator: float = 1,
     radius_observation: int = np.infty,
+    reinit_spreading: float = 0,
     metrics_plot_period: int = 10,
     observations_error_percent: Optional[float] = None,
     observation_locations: Optional[List[Tuple[int, int]]] = None,
     measure_resolution: Optional[float] = None,
     simulation_name: Optional[str] = None,
     csv_reader_options: Dict = {},
-    verbose: bool = True,
+    verbose: bool = False,
+    computations_data_dir: Optional[str] = None,
+    cells_area: Optional[np.ndarray] = None,
 ):
     """
     Start the ocean plastic assimilator
@@ -54,7 +57,7 @@ def run_assimilator(
     :param assimilation_domain_coords: Coordinates x1,y1,x2,y2 of the rectangle delimitating the area of assimilation
     :param assimilation_grid_size: Tuple n,p with n the number of grid cells on the horizontal axis, y on the vertical axis.
     :param size_ensemble: Size of the ensemble
-    :param initial_ensemble_spread_percent: Initial standard deviation / spread of the ensemble
+    :param initial_ensemble_spread: Initial standard deviation / spread of the ensemble
     :param t_start: Time index of the input particles file at which to start assimilating
     :param t_end: Time index at which to stop assimilating
     :param initial_mass_multiplicator: Multiplicator of the initial total mass of the simulation observatations are assimilated in.
@@ -87,16 +90,17 @@ def run_assimilator(
 
     if simulation_name is None:
         simulation_name = datetime.now().strftime("%y%m%d%H%M%S")
+    
+    if cells_area is None:
+        cells_area = np.ones(assimilation_grid_size)
 
     # If paths are not defined, create directories here
     all_outputs_dir = "outputs/"
-    all_data_dir = "data/"
-    if not Path(all_outputs_dir).is_dir():
-        Path(all_outputs_dir).mkdir()
-    if not Path(all_data_dir).is_dir():
-        Path(all_data_dir).mkdir()
+    computations_data_dir = "data/" if computations_data_dir is None else computations_data_dir
+    Path(all_outputs_dir).mkdir(exist_ok=True)
+    Path(computations_data_dir).mkdir(exist_ok=True)
 
-    data_dir = f"{all_data_dir}data_{simulation_name}/"
+    data_dir = f"{computations_data_dir}data_{simulation_name}/"
     metrics_dir = f"{all_outputs_dir}output_{simulation_name}/"
 
     ds_particles = nc.Dataset(particles_dataset_path)
@@ -153,7 +157,7 @@ def run_assimilator(
 
     config = AssimilatorConfig(
         size_ensemble=size_ensemble,
-        ensemble_spread_percent=initial_ensemble_spread_percent,
+        ensemble_spread=initial_ensemble_spread,
         initial_mass_multiplicator=initial_mass_multiplicator,
         num_particles_total=num_parts,
         grid_coords=RectGridCoords(
@@ -173,8 +177,9 @@ def run_assimilator(
         max_time=t_end + 1,
         t_start=t_start,
         t_end=t_end,
-        reinit_spreading=0,
+        reinit_spreading=reinit_spreading,
         observations=observation_config,
+        cells_area=cells_area,
         verbose=verbose,
     )
 
