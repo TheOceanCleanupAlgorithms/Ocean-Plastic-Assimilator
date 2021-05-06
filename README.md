@@ -25,7 +25,7 @@ then use one of the example scripts in `examples/` as a template for your use ca
 
 ## 1.2 Run the GMD paper experiments
 
-If you are looking at running the experiments and examples presented in the paper submitted to Copernicus Geoscientific Model Development, use the examples_index.ipynb notebook to automatically download the required data and start the experiments.
+If you are looking at running the experiments and examples presented in the paper submitted to Geoscientific Model Development, use the examples_index.ipynb notebook to automatically download the required data and start the experiments.
 
 ## 2. Data requirements
 
