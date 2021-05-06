@@ -10,9 +10,10 @@ Use the following to generate two dispersion simulations with the flow field def
 
 All the required files are available using the following DOI: 
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4277840.svg)](https://doi.org/10.5281/zenodo.4277840)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4740138.svg)](https://doi.org/10.5281/zenodo.4740138)
 
-You can simply download the files and use them as input of the assimilator using the example available in the `examples/` folder.
+
+You can simply download the files and use them as input of the assimilator using the examples available in the `examples/` folder or the `examples_index.ipynb` notebook (recommended). The notebook will also help you easily download the files in the right directory.
 
 ## Generating a double gyre simulation
 
