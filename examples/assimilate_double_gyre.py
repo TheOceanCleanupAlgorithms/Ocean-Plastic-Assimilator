@@ -14,7 +14,7 @@ if __name__ == "__main__":
         assimilation_domain_coords=(195, 20, 225, 40),
         assimilation_grid_size=(60, 40),
         size_ensemble=10,
-        initial_ensemble_spread_percent=0.05,
+        initial_ensemble_spread=0.05,
         t_start=0,
         t_end=2000,
         observations_error_percent=sigma_rel,

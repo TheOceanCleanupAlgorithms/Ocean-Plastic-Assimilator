@@ -27,7 +27,7 @@ def run_assimilator(
     assimilation_domain_coords: Tuple[float, float, float, float],
     assimilation_grid_size: Tuple[int, int],
     size_ensemble: int,
-    initial_ensemble_spread_percent: float,
+    initial_ensemble_spread: float,
     t_start: int,
     t_end: int,
     initial_mass_multiplicator: float = 1,
@@ -40,7 +40,8 @@ def run_assimilator(
     simulation_name: Optional[str] = None,
     csv_reader_options: Dict = {},
     verbose: bool = False,
-    computations_data_dir: Optional[str] = None
+    computations_data_dir: Optional[str] = None,
+    cells_area: Optional[np.ndarray] = None,
 ):
     """
     Start the ocean plastic assimilator
@@ -56,7 +57,7 @@ def run_assimilator(
     :param assimilation_domain_coords: Coordinates x1,y1,x2,y2 of the rectangle delimitating the area of assimilation
     :param assimilation_grid_size: Tuple n,p with n the number of grid cells on the horizontal axis, y on the vertical axis.
     :param size_ensemble: Size of the ensemble
-    :param initial_ensemble_spread_percent: Initial standard deviation / spread of the ensemble
+    :param initial_ensemble_spread: Initial standard deviation / spread of the ensemble
     :param t_start: Time index of the input particles file at which to start assimilating
     :param t_end: Time index at which to stop assimilating
     :param initial_mass_multiplicator: Multiplicator of the initial total mass of the simulation observatations are assimilated in.
@@ -89,6 +90,9 @@ def run_assimilator(
 
     if simulation_name is None:
         simulation_name = datetime.now().strftime("%y%m%d%H%M%S")
+    
+    if cells_area is None:
+        cells_area = np.ones(assimilation_grid_size)
 
     # If paths are not defined, create directories here
     all_outputs_dir = "outputs/"
@@ -153,7 +157,7 @@ def run_assimilator(
 
     config = AssimilatorConfig(
         size_ensemble=size_ensemble,
-        ensemble_spread_percent=initial_ensemble_spread_percent,
+        ensemble_spread=initial_ensemble_spread,
         initial_mass_multiplicator=initial_mass_multiplicator,
         num_particles_total=num_parts,
         grid_coords=RectGridCoords(
@@ -175,6 +179,7 @@ def run_assimilator(
         t_end=t_end,
         reinit_spreading=reinit_spreading,
         observations=observation_config,
+        cells_area=cells_area,
         verbose=verbose,
     )
 

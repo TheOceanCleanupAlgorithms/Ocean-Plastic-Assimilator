@@ -11,6 +11,7 @@ def compute_ensemble_densities_over_time(
     parts_lat: np.ndarray,
     all_densities: np.ndarray,
     weights: np.ndarray,
+    cells_area: np.ndarray,
     T: List,
     grid_coords: RectGridCoords,
 ):
@@ -29,6 +30,7 @@ def compute_ensemble_densities_over_time(
         lon_ids_for_all_parts,
         lat_ids_for_all_parts,
         weights,
+        cells_area,
         nbParts,
         grid_coords.max_lon_id,
         grid_coords.max_lat_id,
@@ -41,7 +43,7 @@ def compute_ensemble_densities_over_time(
 
 @njit
 def llvm_compute_ensemble_densities_over_time(
-    lon_ids_for_all_parts, lat_ids_for_all_parts, weights, nbParts, n, p, T, size_e
+    lon_ids_for_all_parts, lat_ids_for_all_parts, weights, cells_area, nbParts, n, p, T, size_e
 ):
     densities = np.zeros((n, p, T, size_e))
 
@@ -52,7 +54,7 @@ def llvm_compute_ensemble_densities_over_time(
 
             if lonId >= 0 and lonId < n and latId >= 0 and latId < p:
                 for e in range(size_e):
-                    densities[lonId, latId, t, e] += weights[e, i]
+                    densities[lonId, latId, t, e] += weights[e, i] / cells_area[lonId, latId]
 
     return densities
 
@@ -62,6 +64,7 @@ def compute_ensemble_densities_over_parts(
     all_densities: np.ndarray,
     weights: np.ndarray,
     grid_coords: RectGridCoords,
+    cells_area: np.ndarray,
     t: int,
 ):
     densities = np.zeros(
@@ -73,7 +76,7 @@ def compute_ensemble_densities_over_parts(
             try:
                 particleIds = partIdsForArea[x][y]
                 weight = np.sum(weights[:, particleIds], axis=1)
-                densities[x, y, :] += weight
+                densities[x, y, :] += weight / cells_area[x, y]
             except KeyError:
                 pass
 

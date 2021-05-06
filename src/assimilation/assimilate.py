@@ -274,6 +274,7 @@ def assimilate(
         densities_ensemble,
         weights,
         config.grid_coords,
+        config.cells_area,
         t_observation + 1,
     )
 

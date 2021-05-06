@@ -8,7 +8,7 @@ if __name__ == "__main__":
         assimilation_domain_coords=(195 - 360, 23, 235 - 360, 45),
         assimilation_grid_size=(int(40 / 0.5), int(22 / 0.5)),
         size_ensemble=10,
-        initial_ensemble_spread_percent=0.05,
+        initial_ensemble_spread=0.05,
         t_start=0,
         t_end=300,
         radius_observation=50,
