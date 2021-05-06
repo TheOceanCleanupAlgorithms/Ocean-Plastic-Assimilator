@@ -19,24 +19,24 @@ conda config --set channel_priority strict
 ```
 conda env create -f environment.yml
 conda activate ocean-plastic-assimilator
-python examples/assimilate_double_gyre.py
 ```
+
+then use one of the example scripts in `examples/` as a template for your use case.
+
+## 1.2 Run the GMD paper experiments
+
+If you are looking at running the experiments and examples presented in the paper submitted to Copernicus Geoscientific Model Development, use the examples_index.ipynb notebook to automatically download the required data and start the experiments.
 
 ## 2. Data requirements
 
 See the [dedicated documentation file](docs/data_requirements.md).
 
-## 3. Specific requirements to test the program on a double gyre simulation
-
-These are the steps to follow to reproduce the results in the initial paper for the GMD journal.
-See the [dedicated documentation file](docs/double_gyre.md)
-
-## 4. Start the simulation
+## 3. Start the simulation
 
 Follow the instructions in the notebook `examples.ipynb` to run the experiments described in the paper, or copy one of the example start scripts in `examples/` in the root directory and start it.
 
 # Appendices
 
-## A. Notebooks used to generate figures for the initial paper
+## A. Notebooks used to generate figures for the GMD paper
 
 These notebooks are in the `analysis/` folder.
