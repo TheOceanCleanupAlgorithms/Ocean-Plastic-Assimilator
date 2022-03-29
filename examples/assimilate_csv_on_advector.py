@@ -1,12 +1,20 @@
 from src.run_assimilator import run_assimilator
 import numpy as np
 
-cell_area = lambda dlon,dlat,lat: dlat * 111 * dlon * 111 * np.cos(lat * np.pi / 180)
+cell_area = lambda dlon, dlat, lat: dlat * 111 * dlon * 111 * np.cos(lat * np.pi / 180)
 
 GRID_COORDS = (-165, 23, -125, 45)
 GRID_RESOLUTION = 0.5
 
-cells_area = np.array([[cell_area(0.5, 0.5, lat_id * GRID_RESOLUTION + GRID_COORDS[1]) for lat_id in range(44)] for lon_id in range(80)])
+cells_area = np.array(
+    [
+        [
+            cell_area(0.5, 0.5, lat_id * GRID_RESOLUTION + GRID_COORDS[1])
+            for lat_id in range(44)
+        ]
+        for lon_id in range(80)
+    ]
+)
 
 if __name__ == "__main__":
     run_assimilator(
@@ -16,10 +24,10 @@ if __name__ == "__main__":
         assimilation_domain_coords=GRID_COORDS,
         assimilation_grid_size=(int(40 / GRID_RESOLUTION), int(22 / GRID_RESOLUTION)),
         size_ensemble=10,
-        initial_ensemble_spread=50, # Define, a tested, functionning value can be 0.5% of your initial particle mass
+        initial_ensemble_spread=50,  # Define, a tested, functionning value can be 0.5% of your initial particle mass
         t_start=0,
         t_end=365,
         radius_observation=np.inf,
-        initial_mass_multiplicator=1000, # Set to your initial particles mass
-        cells_area=cells_area
+        initial_mass_multiplicator=1000,  # Set to your initial particles mass
+        cells_area=cells_area,
     )

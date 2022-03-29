@@ -144,4 +144,7 @@ def init_data(datapaths: AssimilatorDataPaths, config: AssimilatorConfig):
         config, datapaths.ds_parts_ensemble, datapaths.ds_densities_ensemble
     )
 
-    copyfile(datapaths.ds_densities_ensemble, datapaths.ds_densities_ensemble.strip(".nc") + "_init.nc")
+    copyfile(
+        datapaths.ds_densities_ensemble,
+        datapaths.ds_densities_ensemble.strip(".nc") + "_init.nc",
+    )

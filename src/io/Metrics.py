@@ -92,7 +92,7 @@ class Metrics:
         self.min_densities_error = min(
             self.min_densities_error, densities_difference.min()
         )
-        current_rmse = np.math.sqrt(np.average(densities_difference ** 2))
+        current_rmse = np.math.sqrt(np.average(densities_difference**2))
 
         self.csv_logger.log("t", t + 1)
         self.csv_logger.log("weights_mins", np.min(avg_weights))

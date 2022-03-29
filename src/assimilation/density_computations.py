@@ -115,10 +115,8 @@ def llvm_compute_densities(
             latId = lat_ids_for_all_parts[i, t]
 
             if lonId >= 0 and lonId < n and latId >= 0 and latId < p:
-                densities[
-                    lonId,
-                    latId,
-                    t,
-                ] += weights[i] / cells_area[lonId, latId]
+                densities[lonId, latId, t,] += (
+                    weights[i] / cells_area[lonId, latId]
+                )
 
     return densities

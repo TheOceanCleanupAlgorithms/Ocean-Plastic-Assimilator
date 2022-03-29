@@ -90,13 +90,15 @@ def run_assimilator(
 
     if simulation_name is None:
         simulation_name = datetime.now().strftime("%y%m%d%H%M%S")
-    
+
     if cells_area is None:
         cells_area = np.ones(assimilation_grid_size)
 
     # If paths are not defined, create directories here
     all_outputs_dir = "outputs/"
-    computations_data_dir = "data/" if computations_data_dir is None else computations_data_dir
+    computations_data_dir = (
+        "data/" if computations_data_dir is None else computations_data_dir
+    )
     Path(all_outputs_dir).mkdir(exist_ok=True)
     Path(computations_data_dir).mkdir(exist_ok=True)
 
