@@ -36,7 +36,7 @@ def sample_observations(
     # Define observation variance based on desired percentage error and measure resolution.
     # We assume there's no covariance between measurements.
     observation_variances = [
-        (observation_error_percent * observation_value) ** 2 + measure_resolution ** 2
+        (observation_error_percent * observation_value) ** 2 + measure_resolution**2
         for observation_value in observation_values
     ]
 

@@ -43,7 +43,15 @@ def compute_ensemble_densities_over_time(
 
 @njit
 def llvm_compute_ensemble_densities_over_time(
-    lon_ids_for_all_parts, lat_ids_for_all_parts, weights, cells_area, nbParts, n, p, T, size_e
+    lon_ids_for_all_parts,
+    lat_ids_for_all_parts,
+    weights,
+    cells_area,
+    nbParts,
+    n,
+    p,
+    T,
+    size_e,
 ):
     densities = np.zeros((n, p, T, size_e))
 
@@ -54,7 +62,9 @@ def llvm_compute_ensemble_densities_over_time(
 
             if lonId >= 0 and lonId < n and latId >= 0 and latId < p:
                 for e in range(size_e):
-                    densities[lonId, latId, t, e] += weights[e, i] / cells_area[lonId, latId]
+                    densities[lonId, latId, t, e] += (
+                        weights[e, i] / cells_area[lonId, latId]
+                    )
 
     return densities
 

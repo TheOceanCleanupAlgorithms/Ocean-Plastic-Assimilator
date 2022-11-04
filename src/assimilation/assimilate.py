@@ -23,21 +23,18 @@ def reintroduce_error(densities_ensemble, reinit_spreading: float, t_observation
 def compute_covariances_for_point(
     densities_ensemble, avgs_densities, lon_obs_id, lat_obs_id, t_observation
 ):
-    return (
-        np.sum(
-            (
-                densities_ensemble[:, lon_obs_id, lat_obs_id, t_observation]
-                - avgs_densities[lon_obs_id, lat_obs_id],
-            )
-            * np.moveaxis(
-                densities_ensemble[:, :, :, t_observation] - avgs_densities[:, :],
-                0,
-                -1,
-            ),
-            axis=2,
+    return np.sum(
+        (
+            densities_ensemble[:, lon_obs_id, lat_obs_id, t_observation]
+            - avgs_densities[lon_obs_id, lat_obs_id],
         )
-        / (densities_ensemble.shape[0] - 1)
-    )
+        * np.moveaxis(
+            densities_ensemble[:, :, :, t_observation] - avgs_densities[:, :],
+            0,
+            -1,
+        ),
+        axis=2,
+    ) / (densities_ensemble.shape[0] - 1)
 
 
 def compute_covariances(
